@@ -1,0 +1,27 @@
+<table class="table table-striped table-bordered bootstrap-datatable datatable responsive" ui-jq="dataTable" ui-options="dataTableOpt">
+    <thead>
+    <tr>
+        <th>Ingredient Name</th>
+        <th>Unit</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="ingredient in ingredients">
+        <td>{{ingredient.ingredient_name}}</td>
+        <td class="center">{{ingredient.unit.unit_name}}</td>
+        <td class="center">{{ingredient.ingredient_price}}</td>
+        <td class="center">
+            <a class="btn btn-info btn-edit" href="#" ng-click="app.selectIngredient(ingredient)" data-toggle="modal" data-target="#modalIngredientEdit">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger btn-delete" href="#"  ng-click="app.selectIngredient(ingredient)" data-toggle="modal" data-target="#modalIngredientDelete">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>

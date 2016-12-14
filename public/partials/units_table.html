@@ -1,0 +1,23 @@
+<table class="table table-striped table-bordered bootstrap-datatable datatable responsive" ui-jq="dataTable" ui-options="dataTableOpt">
+    <thead>
+    <tr>
+        <th>Unit Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="unit in units">
+        <td>{{unit.unit_name}}</td>
+        <td class="center">
+            <a class="btn btn-info btn-edit" href="#" data-toggle="modal" data-target="#modalUnitEdit" ng-click="app.selectUnit(unit)">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger btn-delete" href="#" data-toggle="modal" data-target="#modalUnitDelete" ng-click="app.selectUnit(unit)">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>

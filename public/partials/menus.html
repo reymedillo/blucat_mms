@@ -1,0 +1,152 @@
+<div>
+    <ul class="breadcrumb">
+        <li><a href="">Home</a></li>
+        <li><a href="">Menus</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-tasks"></i> Menus</h2>
+            </div>
+            <div class="box-content">
+                <div class="box-content"><a class="btn btn-primary btn-add" href="#" data-toggle="modal" data-target="#modalMenuAdd"  ng-click="app.clearForm()">
+                    <i class="glyphicon glyphicon-plus icon-white"></i>
+                    Add New Menu
+                </a>
+                </div>
+                <ng-include src="app.templates.menu.menus_table"></ng-include>
+            </div>
+        </div>
+    </div>
+</div><!--/row-->
+<hr>
+<div class="modal fade" id="modalMenuView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Ingredients</h3>
+            </div>
+            <div class="modal-body">
+                <ng-include src="app.templates.menu.table_menu_view"></ng-include>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalMenuAdd" tabindex="-1" role="dialog" aria-labelledby="myModalAddLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Add Menu</h3>
+            </div>
+            <div class="modal-body">
+                <ng-include src="'/partials/alert_messages.html'"></ng-include>
+                <div class="box-content">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Menu Name</label>
+                            <input type="text" class="form-control" id="menuName" placeholder="Menu Name" ng-model="new_menu.menu_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Menu Price</label>
+                            <input type="text" class="form-control" id="menuName" placeholder="Menu price" ng-model="new_menu.menu_price">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="selectError">Select Category</label>
+                            <div class="controls">
+                                <select ng-model="new_menu.category" ng-options="category.category_name for category in categories">
+                                    <option value="" disabled>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="selectError">Add Ingredients</label>
+                            <div class="controls">
+                                <select ng-options="ingredient.ingredient_name for ingredient in ingredients" ng-model="new_menu.selected_ingredient[$index]">
+                                    <option value="" disabled>Select</option>
+                                </select>
+                                <a href="#" class="btn btn-primary" ng-click="app.addMenuIngredients(new_menu.selected_ingredient)" ng-disabled="!new_menu.selected_ingredient">Add</a>
+                            </div>
+                        </div>
+                    </form>
+                    <ng-include src="app.templates.menu.table_menu_add"></ng-include>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary" ng-click="app.createMenu(new_menu)">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalMenuEdit" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Edit Menu</h3>
+            </div>
+            <div class="modal-body">
+                <ng-include src="'/partials/alert_messages.html'"></ng-include>
+                <div class="box-content">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Menu Name</label>
+                            <input type="text" class="form-control" id="menuName" placeholder="Menu Name" ng-model="selected_menu.menu_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Menu Price</label>
+                            <input type="text" class="form-control" id="menuName" placeholder="Menu price" ng-model="selected_menu.menu_price">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="selectError">Select Category</label>
+                            <div class="controls">
+                                <select ng-model="selected_menu.category" ng-options="category.category_name for category in categories">
+                                    <option value="" disabled>{{selected_menu.category.category_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="selectError">Add Ingredients</label>
+                            <div class="controls">
+                                <select ng-options="ingredient.ingredient_name for ingredient in ingredients" ng-model="selected_menu.selected_ingredient[$index]">
+                                    <option value="" disabled>Select</option>
+                                </select>
+                                <a href="#" class="btn btn-primary" ng-click="app.addEditMenuIngredients(selected_menu.selected_ingredient)" ng-disabled="!selected_menu.selected_ingredient">Add</a>
+                            </div>
+                        </div>
+                    </form>
+                    <ng-include src="app.templates.menu.table_menu_edit"></ng-include>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary" ng-click="app.updateMenu()">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalMenuDelete" tabindex="-1" role="dialog" aria-labelledby="myModalDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Delete Menu</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this menu?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary" data-dismiss="modal" ng-click="app.deleteMenu()">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

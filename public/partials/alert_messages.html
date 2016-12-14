@@ -1,0 +1,6 @@
+<div ng-repeat="message in app.messages.errors">
+    <div class="alert alert-danger" ng-repeat="(key, value) in message">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{value}}
+    </div>
+</div>

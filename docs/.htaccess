@@ -1,0 +1,8 @@
+AuthUserFile /virtual/blucat/.htpassword
+AuthGroupFile /dev/null
+AuthName MembersOnly
+AuthType Basic
+
+<Limit GET POST>
+require valid-user
+</Limit>

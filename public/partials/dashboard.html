@@ -1,0 +1,70 @@
+<!-- content starts -->
+<div>
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Dashboard</a></li>
+    </ul>
+</div>
+<div class=" row">
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="4 new menus." class="well top-block" href="menu.html">
+            <i class="glyphicon glyphicon-tasks yellow"></i>
+
+            <div>Total Menus</div>
+            <div>4</div>
+            <span class="notification yellow">4</span>
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="4 new categories." class="well top-block" href="category.html">
+            <i class="glyphicon glyphicon-align-justify red"></i>
+
+            <div>Total Categories</div>
+            <div>4</div>
+            <span class="notification red">4</span>
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="4 new ingredients." class="well top-block" href="ingredient.html">
+            <i class="glyphicon glyphicon-star green"></i>
+
+            <div>Total Ingredients</div>
+            <div>228</div>
+            <span class="notification green">4</span>
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="4 new members." class="well top-block" href="user.html">
+            <i class="glyphicon glyphicon-user blue"></i>
+
+            <div>Total Users</div>
+            <div>4</div>
+            <span class="notification">4</span>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well">
+                <h2><i class="glyphicon glyphicon-list-alt"></i> Sales Chart</h2>
+            </div>
+            <div class="box-content">
+                <div id="sincos" class="center" style="height:300px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- chart libraries start -->
+<script src="bower_components/flot/excanvas.min.js"></script>
+<script src="bower_components/flot/jquery.flot.js"></script>
+<script src="bower_components/flot/jquery.flot.resize.js"></script>
+<script src="bower_components/flot/jquery.flot.time.js"></script>
+<!-- chart libraries end -->
+<script src="js/init-chart.js"></script>
+<!-- content ends -->
