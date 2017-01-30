@@ -4,23 +4,21 @@
 @include('left-sidebar')
 <style>
     #gallery .thumbnail{
-        width:150px;
+        width:200px;
         height: 150px;
         float:right;
-        margin-right: 25px;
     }
     #gallery .thumbnail img{
-        width:150px;
+        width:200px;
         height: 150px;
     }
-    #edit_gallery .edit_thumbnail{
-        width:150px;
+    #edit_gallery .thumbnail{
+        width:200px;
         height: 150px;
         float:right;
-        margin-right: 25px;
     }
-    #edit_gallery .edit_thumbnail img{
-        width:150px;
+    #edit_gallery .thumbnail img{
+        width:200px;
         height: 150px;
     }
 </style>

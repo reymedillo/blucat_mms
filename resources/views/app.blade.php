@@ -27,6 +27,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="/" class="brand"><img style src="/images/logo.png" />blu Cat MMS</a>
+                    @if(Auth::check())
                     <div id="app-nav-top-bar" class="nav-collapse">
                         <ul class="nav pull-right">
                             <li>
@@ -35,6 +36,7 @@
                             
                         </ul>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

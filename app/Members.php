@@ -9,6 +9,8 @@ class Members extends Model
 {
     use SoftDeletes;
     protected $table = 'member_tbl';
+    public $primaryKey = 'id';
+    public $incrementing = false;
     protected $dates = ['deleted_at'];
 
     public static function membersValidator($request,$type='create') {
@@ -16,9 +18,10 @@ class Members extends Model
         $validation['last_name']     = 'required|max:255';
         $validation['contact_num']   = 'required|numeric|digits_between:7,11';
         if($type == 'update') {
-            $validation['mail_address']  = 'required|email|max:255';
+            $validation['mail_address']  = 'email|max:255';
         } else {
-            $validation['mail_address']  = 'required|email|unique:member_tbl|max:255';
+            $validation['mail_address']  = 'email|unique:member_tbl|max:255';
+            $validation['id']          = 'required|unique:member_tbl|max:10';
         }
 
         $validation['ranking']       = 'required|numeric';

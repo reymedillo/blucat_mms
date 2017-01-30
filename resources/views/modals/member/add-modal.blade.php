@@ -8,20 +8,21 @@
         <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}" />
         <div class="input-prepend">
             <div id="gallery"></div>
+            <span class="add-on"><i class="btn-icon-only icon-bookmark"></i></span>
+            <input name="id" class="span2" required="" type="text" placeholder="ID"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-user"></i></span>
-            <input name="first_name" class="span4" required="" type="text" placeholder="First Name">
-            <br><br>
+            <input name="first_name" class="span4" required="" type="text" placeholder="First Name"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-user"></i></span>
             <input name="last_name" class="span4" required="" type="text" placeholder="Last Name"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-phone"></i></span>
             <input name="contact_num" class="span4" required="" type="text" placeholder="Contact Number"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-envelope"></i></span>
-            <input name="mail_address" class="span4" required="" type="text" placeholder="Email"><br><br>
+            <input name="mail_address" class="span4" type="text" placeholder="Email"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-star"></i></span>
             <select class="span4" required="" name="ranking">
                 <option value="" disabled selected hidden>Select Ranking ...</option>
                 @foreach(config('define.ranking') as $id => $value)
-                <option value="{{$id}}">{{$value}}</option>
+                <option value="{{$id}}">{{$value['name']}}</option>
                 @endforeach
             </select><br><br>
             <label for="image_file">Image Upload</label>

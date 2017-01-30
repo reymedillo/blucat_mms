@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Image;
 
 class MembershipController extends Controller
 {
@@ -15,11 +16,22 @@ class MembershipController extends Controller
         $members = \App\Members::all();
         $mid = $firstname = $lastname = null;
 
-        if( $request->has('mid') || $request->has('firstname') || $request->has('lastname') ) {
+        if( $request->has('mid') || $request->has('firstname') || $request->has('lastname')) {
             $mid = $request->input('mid');
             $firstname = $request->input('firstname');
             $lastname = $request->input('lastname');
-            $members = \App\Members::where('id', $mid)->orWhere('first_name',$firstname)->orWhere('last_name', $lastname)->get();
+
+            $members = \App\Members::select();
+            if($request->has('mid')) {
+                $members->where('id', $mid);
+            }
+            if($request->has('firstname')) {
+                $members->where('first_name', 'LIKE' ,"%{$firstname}%");
+            }
+            if($request->has('lastname')) {
+                $members->where('last_name', 'LIKE' ,"%{$lastname}%");
+            }
+            $members = $members->get();
         }
         return view('members.index', compact('members','mid','firstname','lastname'));
     }
@@ -84,6 +96,9 @@ class MembershipController extends Controller
             $member = \App\Members::find($id);
         }
 
+        if($type != 'update') {
+            $member->id                 = $request->input('id');
+        }
         $member->first_name         = $request->input('first_name');
         $member->last_name          = $request->input('last_name');
         $member->contact_number     = $request->input('contact_num');
@@ -108,11 +123,15 @@ class MembershipController extends Controller
     private function saveImgFile($request) {
         if($request->hasFile('image_file')) {
             $file = $request->file('image_file');
+            //resize
+            $img  = Image::make($file);
+            $img->resize(200,150);
+            
             $path = public_path().config('define.member_image_path');
             $extension = $request->file('image_file')->getClientOriginalExtension();
             $name = 'mms-'.time().'.'.$extension;
+            $img->save($path.$name);
 
-            $file->move($path,$name);
             $request->merge(array('file' => config('define.member_image_path').$name));
 
             return $name;

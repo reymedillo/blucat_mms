@@ -6,8 +6,14 @@ return [
     'wifi_modify_time' => '04:59:59',
     'member_image_path' => '/images/member/',
     'ranking' => [
-        1 => 'Gold',
-        2 => 'Silver',
+        1 => [
+            'name' => 'Gold',
+            'percent' => 10,
+        ],
+        2 => [
+            'name' => 'Silver',
+            'percent' => 5,
+        ],
     ],
     'member_type' => [
         'wifi' => 2,

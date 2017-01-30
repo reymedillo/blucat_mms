@@ -51,6 +51,7 @@ MMS.membership = function() {
             type: 'GET',
             dataType: 'json',
             success: function(response){
+                $("#edit_id").val(response.id);
                 $("#edit_first_name").val(response.first_name);
                 $("#edit_last_name").val(response.last_name);
                 $("#edit_contact_num").val(response.contact_number);

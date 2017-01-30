@@ -14,7 +14,7 @@ class CreateMemberTrnTable extends Migration
     {
         Schema::create('member_trn', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('mid');
+            $table->string('mid',10);
             $table->mediumInteger('type');
             $table->string('message');
             $table->timestamps();

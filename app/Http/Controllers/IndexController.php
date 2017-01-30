@@ -25,11 +25,18 @@ class IndexController extends Controller
     public function updatePoints($mid,Request $request) {
         $member = \App\Members::find($mid);
         if( array_key_exists('add', $request->all()) ) {
-            $points = $member->points + $request->input('myPoint');
+            //get percentage
+            $rank_pct = $point_pct = 0;
+            if(isset(config('define.ranking')[$member->ranking]['percent'])) {
+                $rank_pct = config('define.ranking')[$member->ranking]['percent'];
+                $point_pct = $rank_pct/100*$request->input('myPoint');
+            }
+            $points = $member->points + $point_pct;
+
             $member->points = $points;
             $member->save();
 
-            $message = str_replace('num', $request->input('myPoint'), config('define.member_loyality_actions.add'));
+            $message = str_replace('num', $point_pct, config('define.member_loyality_actions.add'));
             $log = \App\MembersTrn::createLog($mid,config('define.member_type.loyality'),$message);
         } elseif ( array_key_exists('minus', $request->all()) ) {
             $points = $member->points - $request->input('myPoint');

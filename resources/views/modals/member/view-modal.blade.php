@@ -8,10 +8,12 @@
         <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}" />
         <div class="input-prepend">
             <div id="edit_gallery">
-                <div class="edit_thumbnail" id="edit_thumbnail">
+                <div class="thumbnail" id="edit_thumbnail">
                     <img src="">
                 </div>
             </div>
+            <span class="add-on"><i class="btn-icon-only icon-bookmark"></i></span>
+            <input id="edit_id" name="id" class="span2" disabled="" type="text" placeholder="ID"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-user"></i></span>
             <input id="edit_first_name" name="first_name" class="span4" required="" type="text" placeholder="First Name">
             <br><br>
@@ -20,12 +22,12 @@
             <span class="add-on"><i class="btn-icon-only icon-phone"></i></span>
             <input id="edit_contact_num" name="contact_num" class="span4" required="" type="text" placeholder="Contact Number"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-envelope"></i></span>
-            <input id="edit_mail_address" name="mail_address" class="span4" required="" type="text" placeholder="Email"><br><br>
+            <input id="edit_mail_address" name="mail_address" class="span4" type="text" placeholder="Email"><br><br>
             <span class="add-on"><i class="btn-icon-only icon-star"></i></span>
             <select class="span4" required="" id="edit_ranking" name="ranking">
                 <option value="" disabled selected hidden>Select Ranking ...</option>
                 @foreach(config('define.ranking') as $id => $value)
-                <option value="{{$id}}">{{$value}}</option>
+                <option value="{{$id}}">{{$value['name']}}</option>
                 @endforeach
             </select><br><br>
             <label for="image_file">Image Upload</label>
@@ -45,7 +47,7 @@
 <script type="text/javascript">
 (function(){
 function previewImage(file) {
-    $('.edit_thumbnail').remove();
+    $('#edit_thumbnail').remove();
     var galleryId = "edit_gallery";
 
     var gallery = document.getElementById(galleryId);
@@ -56,7 +58,7 @@ function previewImage(file) {
     }
 
     var thumb = document.createElement("div");
-    thumb.classList.add('edit_thumbnail');
+    thumb.classList.add('thumbnail');
     thumb.setAttribute('id','edit_thumbnail');
 
     var img = document.createElement("img");
