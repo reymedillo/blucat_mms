@@ -29,7 +29,7 @@ class MembershipController extends Controller
                 $members->where('first_name', 'LIKE' ,"%{$firstname}%");
             }
             if($request->has('lastname')) {
-                $members->where('last_name', 'LIKE' ,"%{$lastname}%");
+                $members->where('last_name', 'LIKE'  ,"%{$lastname}%");
             }
             $members = $members->get();
         }
